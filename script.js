@@ -45,7 +45,8 @@ var farmerproduction = 0; //Farmer Production Per Tick
 var farmerproductionratio = 1; //Total Improvement Ratio to Farmers
 var farmeroutput = 0; //Final Output of Farmers
 var farmerwheatrate = 0.81; //Farmer Base Generation Rate
-var minerwheatconsumption = 0.08 //Farmer Base Wheat Consumption Rate
+var farmerwheatconsumption = 0; //Farmer Total Wheat Consumption
+var farmerwheatconsumptionrate = 0.08; //Farmer Base Wheat Consumption Rate
 } //Job - Farmer
 {
 var jobminers = 0; //Miners Count
@@ -54,7 +55,8 @@ var minerproduction = 0; //Miner Production Per Tick
 var minerproductionratio = 1; //Total Improvement Ratio to Forests
 var mineroutput = 0; //Final Output of Miners
 var minerockrate = 0.025; //Miner Base Generation Rate
-var minerwheatconsumption = 0.21 //Miner Base Wheat Consumption Rate
+var minerwheatconsumption = 0; //Farmer Total Wheat Consumption
+var minerwheatconsumptionrate = 0.21; //Farmer Base Wheat Consumption Rate
 } // Job - Miner
 
 {
@@ -64,7 +66,8 @@ var loggerproduction = 0; //Logger Production Per Tick
 var loggerproductionratio = 1; //Total Improvement Ratio to Loggers
 var loggeroutput = 0; //Final Output of Loggers
 var loggerwoodrate = 0.064; //Logger Base Generation Rate
-var loggerwheatconsumption = 0.23 //Logger Base Wheat Consumption Rate
+var loggerwheatconsumption = 0; //Farmer Total Wheat Consumption
+var loggerwheatconsumptionrate = 0.21; //Farmer Base Wheat Consumption Rate
 } //Job - Logger
 
 } //Jobs Variables
@@ -207,6 +210,9 @@ $(document).ready(function(){
             deercount = deercount - 1;
             faithpoint = faithpoint + faithincrement;
             console.log("Sacrificed")
+            if(eldercount == 0){
+                $("#PromoteDeer").show();
+            }
             checkNumbers();
             updatePage();
         }
@@ -271,9 +277,42 @@ $(document).ready(function(){
             updatePage();
         }
     })
+    $("#loggerplus").click(function(){
+        if(employableloggers > 0){
+            jobloggers = jobloggers + 1;
+            deercount = deercount - 1;
+        }
+    })
+    $("#loggerminus").click(function(){
+        if(jobloggers > 0){
+            jobloggers = jobloggers - 1;
+        }
+    })
+    $("#minerplus").click(function(){
+        if(employableminers > 0){
+            jobminers = jobminers + 1;
+            deercount = deercount - 1;
+        }
+    })
+    $("#minerminus").click(function(){
+        if(jobminers > 0){
+            jobminers = jobminers - 1;
+        }
+    })
+    $("#farmerplus").click(function(){
+        if(employablefarmers > 0){
+            jobfarmers = jobfarmers + 1;
+            deercount = deercount - 1;
+        }
+    })
+    $("#farmerminus").click(function(){
+        if(jobfarmers > 0){
+            jobfarmers = jobfarmers - 1;
+        }
+    })
     
     $("#AgricultureSci").click(function(){
-        if(sciencepoint >= agriculturecost && agriculture = false){
+        if(sciencepoint >= agriculturecost && agriculture === false){
             agriculture = true;
             sciencepoint = sciencepoint - agriculturecost;
             AgricultureRect.style.fill='#565656';
@@ -286,7 +325,7 @@ $(document).ready(function(){
         }
     })
     $("#LoggingSci").click(function(){
-        if(sciencepoint >= loggingcost && logging = false){
+        if(sciencepoint >= loggingcost && logging === false){
             logging = true;
             sciencepoint = sciencepoint - loggingcost;
             LoggingRect.style.fill='#565656';
@@ -299,7 +338,7 @@ $(document).ready(function(){
         }
     })
     $("#MiningSci").click(function(){
-        if(sciencepoint >= miningcost && mining = false){
+        if(sciencepoint >= miningcost && mining === false){
             mining = true;
             sciencepoint = sciencepoint - miningcost;
             MiningRect.style.fill='#565656';
@@ -361,6 +400,11 @@ function checkNumbers(){
     employableloggers = forestcount - jobloggers;
     loggerproduction = jobloggers * loggerwoodrate;
     loggeroutput = loggerproduction * loggerproductionratio;
+    
+    minerwheatconsumption = jobminers * minerwheatconsumptionrate;
+    loggerwheatconsumption = jobloggers * loggerwheatconsumptionrate;
+    farmerwheatconsumption = jobfarmers * farmerwheatconsumptionrate;
+    totalwheatconsumption = minerwheatconsumption + loggerwheatconsumption + farmerwheatconsumption;
     
 }
 
@@ -445,6 +489,9 @@ function updatePage() {
     if(deercount > 0){
         $("#DeerDiv").slideDown(300);
     } //Show Deer Resource
+    if(faithpoint > 0){
+        $("#FaithDiv").show();
+    }
         
     } //Resources Active Styling
     
