@@ -201,13 +201,14 @@ z-index: 0;
 }
 .bldGroupContainer {
     padding-top: 15px;
+    position:fixed;
     border-top: 1px solid gray;
     width:auto;
     float:left;
     margin:3%;
     margin-top:3%;
     margin-left:20%;
-    z-index:1;
+    z-index:5;
 }
 .sciGroupContainer {
     padding-top: 15px;

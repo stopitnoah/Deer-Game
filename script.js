@@ -1,4 +1,4 @@
-var svg = document.getElementsByTagName("svg");
+{var svg = document.getElementsByTagName("svg");
 
 var rect = document.getElementsByTagName("rect");
 
@@ -6,8 +6,7 @@ var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
 text.setAttribute('x', '10');
 text.setAttribute('y', '20');
 text.setAttribute('fill', '#000');
-text.textContent = 'Hello, I am a blah blah blah blah blah';
-
+text.textContent = 'Hello, I am a blah blah blah blah blah';} // SVG Init
 var deercount = 10; //Deer
 var deerincrement = 1; //Birth Increment
 var deermax = 10; //Deer Capacity
@@ -186,14 +185,13 @@ var civilservicecost = 25;
 } //Science Variables
 
 $(document).ready(function(){
-    $("#HerdMgmt").hide();
     $("#PromoteElder").hide();
     
     $("#HerdMgmt").click(function(){
         $("#MissionControl").fadeOut(300);
         $(".sciGroupContainer").slideUp(300);
         setTimeout(300);
-        $(".bldGroupContainer").toggle();
+        $(".bldGroupContainer").show();
     })    
     $("#ScienceShow").click(function(){
         $(".bldGroupContainer").fadeOut(300);
@@ -589,24 +587,22 @@ function updatePage() {
     
 }
 
+
 function rollUnicorn(){};
 
-
-function particles(){
-    window.onload(Particles.init({selector:'.background', connectParticles:true, maxParticles:deercount, speed:0.1}));
-}
 setInterval(function gameTick(){
     hour = hour + 1;
     if ( hour == 13 ) {
         hour = 1;
+    }
+    if ( hour == 12 ){
         if( AM == false ){
-            document.getElementById("Meridian").innerHTML = "am";
             day = day + 1;
             if(deercount < deermax){
                 deercount = deercount + deerincrement;
             }
         }
-        AM = !AM;
+        AM = !AM
     }
 
 

@@ -1,6 +1,9 @@
 <html>
 <head>
+    <script src="lib/particles.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.0.12/svg.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=B612+Mono|Lato:700|Roboto:300|Source+Sans+Pro:200&display=swap" rel="stylesheet">
 	<title>Deer Game</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="description" content="A simple grazing game.">
@@ -9,11 +12,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
 	<script src="script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.0.12/svg.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="style.css">
-    <link href="https://fonts.googleapis.com/css?family=B612+Mono|Lato:700|Roboto:300|Source+Sans+Pro:200&display=swap" rel="stylesheet">
 </head>
-<body>
+<body id="#Body">
 	<div id="Ticker">
     	<table style="float:left;width:100%">
         	<tr style="width:100%;">
@@ -39,7 +40,14 @@
         </table>
 	</div>
     <div id="Body">
-        <table id="Resources" class="cinereousTable">
+        <!-- count particles -->
+        <div class="count-particles">
+            <span class="js-count-particles">--</span> particles
+        </div>
+
+        <!-- particles.js container -->
+        <div id="particles-js" style="width:20%;border-right:1px solid gray;margin-right:0px;">
+            <table id="Resources" class="cinereousTable">
                     <thead>
                         <tr>
                             <td colspan="5"><div id="ResThead">&nbsp;Resources:</div></td>
@@ -132,7 +140,12 @@
                         <td><span class="Woodrate">#</span></td>
                     </tr>
             </table>
-        <div class="bldGroupContainer" style="display:none;z-index:1;">
+        </div>
+
+        <!-- scripts -->
+        <script src="lib/particles.js"></script>
+        <script src="lib/app.js"></script>
+        <div class="bldGroupContainer" style="display:none;">
                     <table class="table1" cellpadding="0" cellspacing="0" style="width: 100%;">
                         <tr>
                             <td style="vertical-align: top;">
@@ -184,8 +197,6 @@
     </div>
       
     <canvas class="background"></canvas>
-  
-    <script src="lib/particles.js"></script>
     
     <div class="wrapper" id="sciencePage" style="display:none;">
         <div class="svg-container">
