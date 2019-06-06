@@ -1,0 +1,213 @@
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<title>Deer Game</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="description" content="A simple grazing game.">
+    <meta name="keywords" content="Deer, deer, Game, game, Deer Game, Deer game, deer Game, deer game, incremental, Incremental, Incremental game, incremental Game, Incremental Game, incremental game, noah frederick wright, noah wright, Noah, Wright, Frederick, Noah Wright, Noah Frederick Wright, noah right, deer gam, der game, der gam, eer game" />
+    <meta name="author" content="Noah Wright">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+	<script src="script.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=B612+Mono|Lato:700|Roboto:300|Source+Sans+Pro:200&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div id="Ticker">
+    	<table style="float:left;width:100%">
+        	<tr style="width:100%;">
+                <td style="width:10%; text-align:center; color:#C0B283;">Deer Hamlet</td>
+            	<td style="width:10%; text-align:center; color:#C0B283;"><span id="Date"></span></td>
+    			<td style="width:10%; text-align:center; color:#C0B283;"><span id="Time"></span><span id="Meridian">am</span></td>
+                <td style="width:10%; text-align:center; color:#C0B283;"><span id="HerdMgmt" class="BirthButton">Herd Management</span>
+        </td>
+                <td style="width:10%; text-align:center; color:#C0B283;"><span id="ScienceShow" class="BirthButton" style="display:none">Science</span></td>
+                <td style="width:10%; text-align:center; color:#C0B283;">&nbsp;</td>
+                <td style="width:10%; text-align:center; color:#C0B283;">&nbsp;</td>
+                <td style="width:10%; text-align:center; color:#C0B283;">&nbsp;</td>
+                <td style="width:10%; text-align:center; color:#C0B283;">0.0.1.0</td> 
+                <!-- Major Update, Minor Update, Version, Patch -->
+                <td style="width:10%; text-align:center; color:#C0B283;">&nbsp;</td>
+            </tr>
+        </table>
+	</div>
+    <div id="Body">
+        <table id="Resources" class="cinereousTable">
+                    <thead>
+                        <tr>
+                            <td colspan="5"><div id="ResThead">&nbsp;Resources:</div></td>
+                        </tr>
+                    </thead>
+                    <tr id="DeerDiv" class="hidden">
+                        <td><img src="img/deer.png" style="width:16px;height:16px;"></td>
+                        <td>Deer</td>
+                        <td><span class="Deercount">#</span></td>
+                        <td><span class="DeerMax" class="pencil">#</span></td>
+                    </tr>
+                    <tr id="ElderDiv" class="hidden">
+                        <td><img src="img/elder.png" style="width:16px;height:16px;"></td>
+                        <td>Elder</td>
+                        <td><span class="Eldercount">#</span></td>
+                        <td><span class="ElderMax" class="pencil">#</span></td>
+                    </tr>
+                    <tr id="UnicornDiv" class="hidden">
+                        <td><img src="img/unicorn.png" style="width:16px;height:16px;"></td>
+                        <td>Unicorn</td>
+                        <td><span class="UnicornCount">#</span></td>
+                    </tr>
+                    <tr id="ScienceDiv" class="hidden">
+                        <td><img src="img/science.png" style="width:16px;height:16px;"></td>
+                        <td>Science</td>
+                        <td><span class="Sciencepoints">#</span></td>
+                        <td><span class="ScienceMax" class="pencil">#</span> </td>
+                        <td><span class="ScienceRate">#</span></td>
+                    </tr>
+                    <tr id="FaithDiv" class="hidden">
+                        <td><img src="img/faith.png" style="width:16px;height:16px;"></td>
+                        <td>Faith</td>
+                        <td><span class="Faithpoints">#</span></td>
+                        <td><span class="FaithMax" class="pencil">#</span> </td>
+                        <td><span class="FaithRate">#</span></td>
+                    </tr>
+                    <tr id="LandDiv" class="hidden">
+                        <td>Land</td>
+                        <td><span class="Landcount">#</span></td>
+                        <td><span class="Landmax" class="pencil">#</span> </td>
+                        <td><span class="Landrate">#</span></td>
+                    </tr>
+                    <tr id="WheatDiv" class="hidden">
+                        <td>Wheat</td>
+                        <td><span class="Wheatpoints">#</span></td>
+                        <td><span class="Wheatmax" class="pencil">#</span> </td>
+                        <td><span class="Wheatrate">#</span></td>
+                    </tr>
+                    <tr id="WoodDiv" class="hidden">
+                        <td>Wood</td>
+                        <td><span class="Woodpoints">#</span></td>
+                        <td><span class="Woodmax" class="pencil">#</span> </td>
+                        <td><span class="Woodrate">#</span></td>
+                    </tr>
+            </table>
+        <div class="sciGroupContainer" style="display:none;z-index:1;">
+            <table class="table1" cellpadding="0" cellspacing="0" style="width: 100%;" id="Science">
+                <tr>
+                    <td style="vertical-align: top;">
+                        <div class="btn science" id="AgricultureSci">
+                            <div class="btnContent">
+                                <span>Agriculture</span><br>
+                                <span style="font-size:12px; font-family:Lato;">10 Science</span>
+                            </div>
+                        </div>
+                        <div class="btn science" id="LoggingSci">
+                            <div class="btnContent">
+                                <span>Logging</span><br>
+                                <span style="font-size:12px; font-family:Lato;">10 Science</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="vertical-align: top;">
+                        <div class="btn science" id="MiningSci">
+                            <div class="btnContent">
+                                <span>Mining</span><br>
+                                <span style="font-size:12px; font-family:Lato;">10 Science</span>
+                            </div>
+                        </div>
+                        <div class="btn science" id="CivilServiceSci" style="display:none;">
+                            <div class="btnContent">
+                                <span>Civil Service</span><br>
+                                <span style="font-size:12px; font-family:Lato;">25 Science</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <table id="MissionControl" style="display:none">
+                    <thead>
+                        <tr>
+                            <td colspan="4"><div id="MCTitle" class="MCTitle">Mission Control</div></td>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td class="MCtd"><span id="MCr1c1">#</span></td>
+                        <td class="MCtd"><span id="MCr1c2">#</span></td>
+                        <td class="MCtd"><span id="MCr1c3">#</span></td>
+                        <td class="MCtd"><span id="MCr1c4">#</span></td>
+                    </tr>
+                    <tr>
+                        <td class="MCtd"><span id="MCr2c1">#</span></td>
+                        <td class="MCtd"><span id="MCr2c2">#</span></td>
+                        <td class="MCtd"><span id="MCr2c3">#</span></td>
+                        <td class="MCtd"><span id="MCr2c4">#</span></td>
+                    </tr>
+                    <tr>
+                        <td class="MCtd"><span id="MCr3c1">#</span></td>
+                        <td class="MCtd"><span id="MCr3c2">#</span></td>
+                        <td class="MCtd"><span id="MCr3c3">#</span></td>
+                        <td class="MCtd"><span id="MCr3c4">#</span></td>
+                    </tr>
+                    <tr>
+                        <td class="MCtd"><span id="MCr4c1">#</span></td>
+                        <td class="MCtd"><span id="MCr4c2">#</span></td>
+                        <td class="MCtd"><span id="MCr4c3">#</span></td>
+                        <td class="MCtd"><span id="MCr4c4">#</span></td>
+                    </tr>
+                </table>
+        <div class="bldGroupContainer" style="display:none;z-index:1;">
+                    <table class="table1" cellpadding="0" cellspacing="0" style="width: 100%;">
+                        <tr>
+                            <td style="vertical-align: top;">
+                                <div class="btn modern" id="SacrificeDeer">
+                                    <div class="btnContent">
+                                        <span>Sacrifice Deer</span>
+                                    </div>
+                                    <div id="SacrificeDeer2" class="Lato" style="display:none"><span class="Deercount">#</span>/<span>1</span> deer</div>
+                                </div>
+                                <div class="btn modern" style="display:none" id="Grassland">
+                                    <div class="btnContent">
+                                        <span>Grassland </span>(<span id="GrasslandNum">1</span>)
+                                    </div>
+                                    <div id="Grassland2" class="Lato" style="display:none"><span class="Seedpoints">#</span>/<span class="Grasslandcost1">#</span> Seeds <br><span class="Landcount">#</span>/<span class="Grasslandcost3">1</span> Land</div>
+                                </div>
+                                <div class="btn modern" style="display:none" id="Mine">
+                                    <div class="btnContent">
+                                        <span>Mine </span>(<span id="MineNum">1</span>)
+                                    </div>
+                                    <div id="Mine2" class="Lato" style="display:none"><span class="Woodpoints">#</span>/<span class="Minecost1">#</span> Wood <br><span class="Landcount">#</span>/<span class="Minecost2">1</span> Land</div>
+                                </div>
+                            </td>
+                            <td style="vertical-align: top;">
+                                <div class="btn modern" style="display:none" id="PromoteDeer">
+                                    <div class="btnContent">
+                                        <span>Promote Elder</span>
+                                    </div>
+                                    <div id="PromoteDeer2" class="Lato" style="display:none"><span class="Faithpoints">#</span>/<span class="Eldercost">#</span> faith <br><span class="Deercount">#</span>/<span>1</span> deer</div>
+                                </div>
+                                <div class="btn modern" style="display:none" id="Forest">
+                                    <div class="btnContent">
+                                        <span>Forest </span>(<span id="ForestNum">1</span>)
+                                    </div>
+                                    <div id="Forest2" class="Lato" style="display:none"><span class="Rockpoints">#</span>/<span class="Forestcost1">#</span> Rocks <br><span class="Landcount">#</span>/<span class="Forestcost2">1</span> Land</div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+        <div id="ConsoleLog" class="console">
+            <div id="log">
+            </div>
+        </div>
+    </div>
+    <div id="tooltip">
+        <div id="tooltipTitle"><span id="TTT">###</span></div>
+        <div id="tooltipDescr"><span id="TTD">###</span></div>
+        <div id="tooltipCosts"><span id="TTC">###</span></div>
+    </div>
+      
+    <canvas class="background"></canvas>
+  
+    <script src="lib/particles.js"></script>
+    
+    </body>
+</html>
+    
