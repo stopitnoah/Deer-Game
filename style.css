@@ -40,23 +40,20 @@ body {
 #DeerDiv {
   background-color: #E9C893;
 }
-#ElderDiv {
-    background-color:#CAEBF2;
-}
-#ScienceDiv {
-    background-color:#CAEBF2;
+#ScienceDiv, #ElderDiv {
+    background-color:#c7ecee;
 }
 #FaithDiv {
-  background-color: #EFEFEF;
+  background-color: #dff9fb;
 }
 #LandDiv {
     background-color:#b6d7a8;
 }
 #WheatDiv, #FarmerDiv{
-    background-color:#b6d7a8;
+    background-color:#f6e58d;
 }
 #WoodDiv, #LoggerDiv{
-    background-color:#635529;
+    background-color:#f0932b;
     color:white;
 }
 #RockDiv, #MinerDiv{
@@ -110,6 +107,19 @@ body {
     font-family: Lato;
     margin-bottom:5px;
     font-size: 12px;
+}
+#ResThead {
+    background-color:#6ab04c;
+    color:black;
+    font-family: 'B612 Mono', sans-serif;
+    font-size: 18px;
+    font-weight:600;
+    text-align: left;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 5px;
+    border: 2px solid black;
 }
 .MCtd { 
     background-color:#565656;
@@ -295,7 +305,9 @@ table.cinereousTable {
     margin:1%;
     width:15%;
     background-color:#565656;
-    border-radius: 3px;
+    border-radius: 5px;
+    vertical-align: top;
+    padding:3px;
 }
 table.cinereousTable td, table.cinereousTable th {
   padding: 4px 4px;
@@ -309,14 +321,6 @@ table.cinereousTable tbody td {
 }
 table.cinereousTable b {
 	color:#38761d;
-}
-#ResThead {
-    background-color:#76323F;
-    color:#E9C893;
-    font-family: 'Source Sans Pro', sans-serif;
-    font-size: 22px;
-    text-align: left;
-    border-radius: 3px;
 }
 .BirthButton {
 	-moz-box-shadow:inset 0px 1px 0px 0px #9acc85;

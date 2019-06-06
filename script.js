@@ -288,12 +288,12 @@ function checkNumbers(){
     if(rockpoint > rockmax){
         rockpoint = rockmax;
     }
-    grasslandprice1 = 10 * Math.floor(grasslandpriceratio1 ^ grasslandcount);
-    grasslandprice3 = 10 * Math.floor(grasslandpriceratio3 ^ grasslandcount);
-    forestcost1 = 10 * Math.floor(forestpriceratio2 ^ forestcount);
-    forestcost2 = 10 * Math.floor(forestpriceratio2 ^ forestcount);
-    minecost1 = 10 * Math.floor(minepriceratio1 ^ minecount);
-    minecost2 = 10 * Math.floor(minepriceratio2 ^ minecount);
+    grasslandprice1 = 10 * Math.pow(grasslandpriceratio1, grasslandcount);
+    grasslandprice3 = 10 * Math.pow(grasslandpriceratio3, grasslandcount);
+    forestcost1 = 10 * Math.pow(forestpriceratio2, forestcount);
+    forestcost2 = 10 * Math.pow(forestpriceratio2, forestcount);
+    minecost1 = 10 * Math.pow(minepriceratio1, minecount);
+    minecost2 = 10 * Math.pow(minepriceratio2, minecount);
 }
 
 function updatePage() {
