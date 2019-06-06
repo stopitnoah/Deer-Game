@@ -26,7 +26,7 @@
                 <td style="width:10%; text-align:center; color:#C0B283;">&nbsp;</td>
                 <td style="width:10%; text-align:center; color:#C0B283;">&nbsp;</td>
                 <td style="width:10%; text-align:center; color:#C0B283;">&nbsp;</td>
-                <td style="width:10%; text-align:center; color:#C0B283;">0.0.1.3.4</td> 
+                <td style="width:10%; text-align:center; color:#C0B283;">0.0.1.3.5</td> 
                 <!-- Major Update, Minor Update, Version, Patch -->
                 <td style="width:10%; text-align:center; padding-top:20px; color:#C0B283;"><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                     <input type="hidden" name="cmd" value="_s-xclick" />
@@ -62,7 +62,7 @@
                         <td>Farmer</td>
                         <td><span class="jobfarmers">#</span></td>
                         <td><span class="employablefarmers" class="pencil">#</span></td>
-                        <td>(+<span id="farmerproduction">#</span>/tick)</td>
+                        <td>(+<span class="farmerproduction">#</span>/tick)</td>
                         <td id="farmerminus"><span><</span></td>
                         <td id="farmerplus"><span>></span></td>
                     </tr>
@@ -71,16 +71,16 @@
                         <td>Logger</td>
                         <td><span class="jobloggers">#</span></td>
                         <td><span class="employableloggers" class="pencil">#</span></td>
-                        <td>(+<span id="loggerproduction">#</span>/tick)</td>
-                        <td id="loggerplus"><span><</span></td>
-                        <td id="loggerminus"><span>></span></td>
+                        <td>(+<span class="loggerproduction">#</span>/tick)</td>
+                        <td id="loggerminus"><span><</span></td>
+                        <td id="loggerplus"><span>></span></td>
                     </tr>
                     <tr id="MinerDiv" class="hidden" style="font-family:Lato">
                         <td><img src="img/elder.png" style="width:16px;height:16px;"></td>
                         <td>Miner</td>
                         <td><span class="jobminers">#</span></td>
                         <td><span class="employableminers" class="pencil">#</span></td>
-                        <td>(+<span id="minerproduction">#</span>/tick)</td>
+                        <td>(+<span class="minerproduction">#</span>/tick)</td>
                         <td id="minerminus"><span><</span></td>
                         <td id="minerplus"><span>></span></td>
                     </tr>
@@ -146,7 +146,7 @@
                                     <div class="btnContent">
                                         <span>Grassland </span>(<span id="GrasslandNum">1</span>)
                                     </div>
-                                    <div id="Grassland2" class="Lato" style="display:none"><span class="Seedpoints">#</span>/<span class="Grasslandcost1">#</span> Seeds <br><span class="Landcount">#</span>/<span class="Grasslandcost3">1</span> Land</div>
+                                    <div id="Grassland2" class="Lato" style="display:none"><span class="Seedpoints">#</span>/<span class="Grasslandcost1">#</span> Seeds <br><span class="Landcount">#</span>/<span class="Grasslandcost3">1</span> Land<div class="grasslandinfo">Grassland Provides</div></div>
                                 </div>
                                 <div class="btn modern" style="display:none" id="Mine">
                                     <div class="btnContent">

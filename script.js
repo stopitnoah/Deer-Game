@@ -88,6 +88,7 @@ var forestcost1 = 5; //Forest Cost (Seed)
 var forestcost2 = 1; //Forest Cost (Land)
 var forestpriceratio1 = 1.23; //Forest Price Ratio (Seed)
 var forestpriceratio2 = 1.12; //Forest Price Ratio (Land)
+var forestloggerratio = 1.05; //Forest Loger Ratio
 } //Forest Variables
 {
 var grasslandcount = 0; //Number of Grasslands
@@ -101,6 +102,7 @@ var grasslandpriceratio1 = 1.5; //Grassland Price Ratio (Seeds)
 var grasslandpriceratio3 = 1.1; //Grassland Price Ratio (Land)
 var grasslandfarmerboost = 0.1; //Farmer Boost from Grasslands
 var grasslandseedrate = 0.05; //Grassland Seed Production
+var grasslandfarmerratio = 1.10; //Grassland Farmer Boost 10%
 } //Grassland Variables
 {
 var minecount = 0; //Mine Count
@@ -113,6 +115,7 @@ var minecost1 = 10; //Mine Price (Wood)
 var minecost2 = 1;  //Mine Price (Land)
 var minepriceratio1 = 1.28; //Mine Price Ratio (Wood)
 var minepriceratio2 = 1.05; //Mine Price Ratio (Land)
+var mineminerratio = 1.25; //Mine Miner Boost 25%
 } //Mine Variables
 
 var scrapyardcount = 0; //Field Count
@@ -224,7 +227,7 @@ $(document).ready(function(){
         $("#PromoteDeer2").hide();
     })
     $("#PromoteDeer").click(function(){
-        if(deercount > 1 && faithpoint >= eldercost && eldercount < eldermax){
+        if(deercount >= 1 && faithpoint >= eldercost && eldercount < eldermax){
             eldercount = eldercount + elderincrement; //Get Elder
             faithpoint = faithpoint - eldercost; //Pay Faith
             deercount = deercount - 1; //Deer Converts to Elder
@@ -278,36 +281,42 @@ $(document).ready(function(){
         }
     })
     $("#loggerplus").click(function(){
-        if(employableloggers > 0){
+        if(employableloggers > 0 && deercount >= 1){
             jobloggers = jobloggers + 1;
             deercount = deercount - 1;
+            updatePage();
         }
     })
     $("#loggerminus").click(function(){
         if(jobloggers > 0){
             jobloggers = jobloggers - 1;
+            updatePage();
         }
     })
     $("#minerplus").click(function(){
-        if(employableminers > 0){
+        if(employableminers > 0 && deercount >= 1){
             jobminers = jobminers + 1;
             deercount = deercount - 1;
+            updatePage();
         }
     })
     $("#minerminus").click(function(){
         if(jobminers > 0){
             jobminers = jobminers - 1;
+            updatePage();
         }
     })
     $("#farmerplus").click(function(){
-        if(employablefarmers > 0){
+        if(employablefarmers > 0 && deercount >= 1){
             jobfarmers = jobfarmers + 1;
             deercount = deercount - 1;
+            updatePage();
         }
     })
     $("#farmerminus").click(function(){
         if(jobfarmers > 0){
             jobfarmers = jobfarmers - 1;
+            updatePage();
         }
     })
     
@@ -353,6 +362,36 @@ $(document).ready(function(){
 })
 
 function checkNumbers(){
+    
+    grasslandprice1 = 10 * Math.pow(grasslandpriceratio1, grasslandcount);
+    grasslandprice3 = 10 * Math.pow(grasslandpriceratio3, grasslandcount);
+    forestcost1 = 10 * Math.pow(forestpriceratio2, forestcount);
+    forestcost2 = 10 * Math.pow(forestpriceratio2, forestcount);
+    minecost1 = 10 * Math.pow(minepriceratio1, minecount);
+    minecost2 = 10 * Math.pow(minepriceratio2, minecount);
+    
+    forestproduction = forestcount * forestwoodrate;
+    forestoutput = forestproduction * forestproductionratio;
+    grasslandproduction = grasslandcount * grasslandwheatrate;
+    grasslandoutput = grasslandproduction * grasslandproductionratio;
+    mineproduction = minecount * minerockrate;
+    mineoutput = mineproduction * mineproductionratio;
+    
+    employableminers = minecount - jobminers;
+    minerproduction = (jobminers * minerockrate) * Math.pow(mineminerratio, minecount);
+    mineroutput = minerproduction * minerproductionratio;
+    employablefarmers = grasslandcount - jobfarmers;
+    farmerproduction = jobfarmers * farmerwheatrate;
+    farmeroutput = farmerproduction * farmerproductionratio;
+    employableloggers = forestcount - jobloggers;
+    loggerproduction = jobloggers * loggerwoodrate;
+    loggeroutput = loggerproduction * loggerproductionratio;
+    
+    minerwheatconsumption = jobminers * minerwheatconsumptionrate;
+    loggerwheatconsumption = jobloggers * loggerwheatconsumptionrate;
+    farmerwheatconsumption = jobfarmers * farmerwheatconsumptionrate;
+    totalwheatconsumption = minerwheatconsumption + loggerwheatconsumption + farmerwheatconsumption;
+    
     if(faithpoint > faithmax){
         faithpoint = faithmax;
     }
@@ -377,34 +416,6 @@ function checkNumbers(){
     if(woodpoint > woodmax){
         woodpoint = woodmax;
     }
-    grasslandprice1 = 10 * Math.pow(grasslandpriceratio1, grasslandcount);
-    grasslandprice3 = 10 * Math.pow(grasslandpriceratio3, grasslandcount);
-    forestcost1 = 10 * Math.pow(forestpriceratio2, forestcount);
-    forestcost2 = 10 * Math.pow(forestpriceratio2, forestcount);
-    minecost1 = 10 * Math.pow(minepriceratio1, minecount);
-    minecost2 = 10 * Math.pow(minepriceratio2, minecount);
-    
-    forestproduction = forestcount * forestwoodrate;
-    forestoutput = forestproduction * forestproductionratio;
-    grasslandproduction = grasslandcount * grasslandwheatrate;
-    grasslandoutput = grasslandproduction * grasslandproductionratio;
-    mineproduction = minecount * minerockrate;
-    mineoutput = mineproduction * mineproductionratio;
-    
-    employableminers = minecount - jobminers;
-    minerproduction = jobminers * minerockrate;
-    mineroutput = minerproduction * minerproductionratio;
-    employablefarmers = grasslandcount - jobfarmers;
-    farmerproduction = jobfarmers * farmerwheatrate;
-    farmeroutput = farmerproduction * farmerproductionratio;
-    employableloggers = forestcount - jobloggers;
-    loggerproduction = jobloggers * loggerwoodrate;
-    loggeroutput = loggerproduction * loggerproductionratio;
-    
-    minerwheatconsumption = jobminers * minerwheatconsumptionrate;
-    loggerwheatconsumption = jobloggers * loggerwheatconsumptionrate;
-    farmerwheatconsumption = jobfarmers * farmerwheatconsumptionrate;
-    totalwheatconsumption = minerwheatconsumption + loggerwheatconsumption + farmerwheatconsumption;
     
 }
 
