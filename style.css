@@ -52,14 +52,14 @@ body {
 #LandDiv {
     background-color:#b6d7a8;
 }
-#WheatDiv {
+#WheatDiv, #FarmerDiv{
     background-color:#b6d7a8;
 }
-#WoodDiv {
+#WoodDiv, #LoggerDiv{
     background-color:#635529;
     color:white;
 }
-#RockDiv {
+#RockDiv, #MinerDiv{
     background-color:#A1A1A1;
 }
 #UnicornDiv {

@@ -13,7 +13,7 @@ var deerincrement = 1; //Birth Increment
 var deermax = 10; //Deer Capacity
 
 var grasslandcount = 0; //Number of Grasslands
-var grasslandprice1 = 10; //Price of Grasslands (Seeds)
+var grasslandprice1 = 15; //Price of Grasslands (Seeds)
 var grasslandprice3 = 1; //Price of Grasslands (Land)
 var grasslandpriceratio1 = 1.5; //Grassland Price Ratio (Seeds)
 var grasslandpriceratio3 = 1.1; //Grassland Price Ratio (Land)
@@ -27,12 +27,12 @@ var wheatrate = 0; //Wheat Generation
 var wheatincrement = 0;
 
 var rockpoint = 0;
-var rockmax = 0;
+var rockmax = 12.5;
 var rockrate = 0;
 var rockincrement = 0;
 
 var woodpoint = 0;
-var woodmax = 0;
+var woodmax = 25;
 var woodrate = 0;
 var woodincrement = 0;
 
@@ -69,7 +69,7 @@ var minepriceratio2 = 1.05; //Mine Price Ratio (Land)
 var forestcount = 0; //Forest Count
 var forestwoodrate = 0.25; //Forest Base Generation
 var forestloggerboost = 0.15; //Forest Logger Boost
-var forestcost1 = 10; //Forest Cost (Seed)
+var forestcost1 = 5; //Forest Cost (Seed)
 var forestcost2 = 1; //Forest Cost (Land)
 var forestpriceratio1 = 1.23; //Forest Price Ratio (Seed)
 var forestpriceratio2 = 1.12; //Forest Price Ratio (Land)
@@ -151,7 +151,7 @@ $(document).ready(function(){
         $("#SacrificeDeer2").hide();
     })
     $("#SacrificeDeer").click(function(){    
-        if(cardID[0] == 0 && deercount > 0) {
+        if(cardID[0] == 0 && deercount > 0 && faithpoint < faithmax) {
             deercount = deercount - 1;
             faithpoint = faithpoint + faithincrement;
             console.log("Sacrificed")
@@ -189,16 +189,40 @@ $(document).ready(function(){
     $("#Grassland").mouseout(function(){
         $("#Grassland2").hide();
     })
+    $("#Grassland").click(function(){
+        if(grasslandprice1 <= seedpoint && grasslandprice3 <= landcount){
+            grasslandcount = grasslandcount + 1;
+            seedpoint = seedpoint - grasslandprice1;
+            landcount = landcount - grasslandprice3;
+            updatePage();
+        }
+    })
     $("#Forest").mouseover(function(){
         $("#Forest2").show();
     }).mouseout(function(){
         $("#Forest2").hide();
+    })
+    $("#Forest").click(function(){
+        if(forestcost1 <= rockpoint && forestcost2 <= landcount){
+            forestcount = forestcount + 1;
+            rockpoint = rockpoint - forestcost1;
+            landcount = landcount - forestcost2;
+            updatePage();
+        }
     })
     $("#Mine").mouseover(function(){
         $("#Mine2").show();
     })
     $("#Mine").mouseout(function(){
         $("#Mine2").hide();
+    })
+    $("#Mine").click(function(){
+        if(minecost1 <= woodpoint && minecost2 <= landcount){
+            minecount = minecount + 1;
+            woodpoint = woodpoint - minecost1;
+            landcount = landcount - minecost2;
+            updatePage();
+        }
     })
     
     $("#AgricultureSci").click(function(){
@@ -207,9 +231,10 @@ $(document).ready(function(){
             sciencepoint = sciencepoint - agriculturecost;
             AgricultureRect.style.fill='#565656';
             grasslandcount = grasslandcount + 1;
-            $("#Grassland").fadeIn();
-            $("#LandDiv").fadeIn(300);
-            $("#WheatDiv").fadeIn(300);
+            $("#Grassland").toggle();
+            $("#LandDiv").toggle();
+            $("#WheatDiv").toggle();
+            $("#FarmerDiv").toggle();
             updatePage;
         }
     })
@@ -219,9 +244,10 @@ $(document).ready(function(){
             sciencepoint = sciencepoint - loggingcost;
             LoggingRect.style.fill='#565656';
             forestcount = forestcount + 1;
-            $("#Forest").fadeIn();
-            $("#LandDiv").fadeIn(300);
-            $("#WoodDiv").fadeIn(300);
+            $("#Forest").toggle();
+            $("#LandDiv").toggle();
+            $("#WoodDiv").toggle();
+            $("#LoggerDiv").toggle();
             updatePage;
         }
     })
@@ -231,9 +257,10 @@ $(document).ready(function(){
             sciencepoint = sciencepoint - miningcost;
             MiningRect.style.fill='#565656';
             minecount = minecount + 1;
-            $("#Mine").fadeIn();
-            $("#LandDiv").fadeIn(300);
-            $("#RockDiv").fadeIn(300);
+            $("#Mine").toggle();
+            $("#LandDiv").toggle();
+            $("#RockDiv").toggle();
+            $("#MinerDiv").toggle();
             updatePage;
         }
     })
@@ -261,9 +288,17 @@ function checkNumbers(){
     if(rockpoint > rockmax){
         rockpoint = rockmax;
     }
+    grasslandprice1 = 10 * Math.floor(grasslandpriceratio1 ^ grasslandcount);
+    grasslandprice3 = 10 * Math.floor(grasslandpriceratio3 ^ grasslandcount);
+    forestcost1 = 10 * Math.floor(forestpriceratio2 ^ forestcount);
+    forestcost2 = 10 * Math.floor(forestpriceratio2 ^ forestcount);
+    minecost1 = 10 * Math.floor(minepriceratio1 ^ minecount);
+    minecost2 = 10 * Math.floor(minepriceratio2 ^ minecount);
 }
 
 function updatePage() {
+    
+    checkNumbers();
     
     {
         
@@ -407,15 +442,14 @@ function updatePage() {
     }
     } //Science Buttons Active Styling
     
-    {
-        $(".bldGroupContainer").css("z-index","3");
-    } //Z Indexing
-
-    checkNumbers();
 }
 
 function rollUnicorn(){};
 
+
+function particles(){
+    window.onload(Particles.init({selector:'.background', connectParticles:true, maxParticles:deercount, speed:0.1}));
+}
 setInterval(function gameTick(){
     hour = hour + 1;
     if ( hour == 13 ) {
@@ -460,15 +494,13 @@ setInterval(function gameMath(){
     woodpoint = woodpoint + woodrate;
     
     rockrate = (minecount * minerockrate);
-    wheatpoint = wheatpoint + wheatrate;
+    rockpoint = rockpoint + rockrate;
     
     seedrate = grasslandcount * grasslandseedrate;
     seedpoint = seedpoint + seedrate;
     
     landrate = landincrement;
     landcount = landcount + landrate;
-    
-    window.onload(Particles.init({selector:'.background', connectParticles: true,maxParticles:deercount, speed:0.1}));
     
     updatePage();
     
