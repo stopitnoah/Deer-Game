@@ -1,3 +1,13 @@
+var svg = document.getElementsByTagName("svg");
+
+var rect = document.getElementsByTagName("rect");
+
+var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+text.setAttribute('x', '10');
+text.setAttribute('y', '20');
+text.setAttribute('fill', '#000');
+text.textContent = 'Hello, I am a blah blah blah blah blah';
+
 var deercount = 10; //Deer
 var deerincrement = 1; //Birth Increment
 var deermax = 10; //Deer Capacity
@@ -8,7 +18,7 @@ var grasslandprice3 = 1; //Price of Grasslands (Land)
 var grasslandpriceratio1 = 1.5; //Grassland Price Ratio (Seeds)
 var grasslandpriceratio3 = 1.1; //Grassland Price Ratio (Land)
 var grasslandfarmerboost = 0.1; //Farmer Boost from Grasslands
-var grasslandwheatrate = 0.1; //Grassland Wheat Production
+var grasslandwheatrate = 0.5; //Grassland Wheat Production
 var grasslandseedrate = 0.05; //Grassland Seed Production
 
 var wheatpoint = 0; //Starting Wheat Value
@@ -38,7 +48,7 @@ var jobfarmers = 0; //Farmer Count
 var farmersrate = 0.01 //Farmer Base Generation Rate
 
 var jobminers = 0; //Miners Count
-var minersmineralrate = 0.25; //Miner Base Generation Rate
+var minerockrate = 0.25; //Miner Base Generation Rate
 
 var jobloggers = 0; //Loggers Count
 var loggerswoodrate = 0.10; //Logger Base Generation Rate
@@ -48,7 +58,7 @@ var scientistssciencerate = 0.15; //Scientists Base Generation
 
 {
 var minecount = 0; //Mine Count
-var minemineralrate = 0.02; //Mine Base Generation
+var minerockrate = 0.01; //Mine Base Generation
 var mineminerboost = 0.10; //Mine Miner Boost
 var minecost1 = 10; //Mine Price (Wood)
 var minecost2 = 1;  //Mine Price (Land)
@@ -57,7 +67,7 @@ var minepriceratio2 = 1.05; //Mine Price Ratio (Land)
 } //Mine Variables
 
 var forestcount = 0; //Forest Count
-var forestwoodrate = 0.05; //Forest Base Generation
+var forestwoodrate = 0.25; //Forest Base Generation
 var forestloggerboost = 0.15; //Forest Logger Boost
 var forestcost1 = 10; //Forest Cost (Seed)
 var forestcost2 = 1; //Forest Cost (Land)
@@ -131,7 +141,7 @@ $(document).ready(function(){
         $(".bldGroupContainer").fadeOut(300);
         $("#MissionControl").fadeOut(300);
         setTimeout(300);
-        $(".sciGroupContainer").slideDown(300);
+        $("#sciencePage").slideDown(300);
     })
     
     $("#SacrificeDeer").mouseover(function(){
@@ -195,7 +205,7 @@ $(document).ready(function(){
         if(sciencepoint >= agriculturecost){
             agriculture = true;
             sciencepoint = sciencepoint - agriculturecost;
-            $("#AgricultureSci").fadeOut();
+            AgricultureRect.style.fill='#565656';
             grasslandcount = grasslandcount + 1;
             $("#Grassland").fadeIn();
             $("#LandDiv").fadeIn(300);
@@ -207,7 +217,7 @@ $(document).ready(function(){
         if(sciencepoint >= loggingcost){
             logging = true;
             sciencepoint = sciencepoint - loggingcost;
-            $("#LoggingSci").fadeOut();
+            LoggingRect.style.fill='#565656';
             forestcount = forestcount + 1;
             $("#Forest").fadeIn();
             $("#LandDiv").fadeIn(300);
@@ -219,7 +229,7 @@ $(document).ready(function(){
         if(sciencepoint >= miningcost){
             mining = true;
             sciencepoint = sciencepoint - miningcost;
-            $("#MiningSci").fadeOut();
+            MiningRect.style.fill='#565656';
             minecount = minecount + 1;
             $("#Mine").fadeIn();
             $("#LandDiv").fadeIn(300);
@@ -444,6 +454,12 @@ setInterval(function gameMath(){
     sciencepoint = sciencepoint + sciencerate;
     
     wheatrate = (grasslandcount * grasslandwheatrate);
+    wheatpoint = wheatpoint + wheatrate;
+    
+    woodrate = (forestcount * forestwoodrate);
+    woodpoint = woodpoint + woodrate;
+    
+    rockrate = (minecount * minerockrate);
     wheatpoint = wheatpoint + wheatrate;
     
     seedrate = grasslandcount * grasslandseedrate;

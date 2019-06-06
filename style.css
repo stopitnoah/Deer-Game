@@ -29,8 +29,9 @@ body {
     box-shadow: 1px;
 }
 #Resources {
-    top:6%;
+    top:8%;
     position:absolute;
+    margin-top:
     margin:1%;
     clear:both;
     margin-right: 1.5%;
@@ -55,8 +56,11 @@ body {
     background-color:#b6d7a8;
 }
 #WoodDiv {
-    background-color:##935529;
+    background-color:#635529;
     color:white;
+}
+#RockDiv {
+    background-color:#A1A1A1;
 }
 #UnicornDiv {
     background-color:#C0B283;
@@ -191,7 +195,7 @@ z-index: 0;
     width:auto;
     float:left;
     margin:3%;
-    margin-top:1%;
+    margin-top:3%;
     margin-left:20%;
     z-index:1;
 }
@@ -200,7 +204,8 @@ z-index: 0;
     border-top: 1px solid gray;
     width:auto;
     float:left;
-    margin-top:1%;
+    position:fixed;
+    margin-top:3%;
     margin:3%;
     margin-left:20%;
     z-index:1;
@@ -352,6 +357,42 @@ table.cinereousTable b {
 	position:relative;
 	top:1px;
 }
+
+.wrapper {
+    width:40%;
+    float:right;
+    margin:1%;
+    margin-top:3%;
+    border: 2px solid gray;
+    background-color:CAEBF2;
+}
+
+.svg-container { 
+	display: inline-block;
+	position: relative;
+	width: 100%;
+	padding-bottom: 100%;
+	vertical-align: middle; 
+	overflow: hidden; 
+  background: #f5f3e7;
+}
+
+.svg-content { 
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+// line {
+//   //position: relative;
+//   z-index: -1;
+// }
+
+// rect {
+//   //position: relative;
+//   z-index: 1;
+// }
 
 /* 
 
