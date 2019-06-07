@@ -21,21 +21,59 @@ body {
     top:0px;
     left:0px;
     width:100%;
+    height:4%;
 	overflow: hidden;
 	background-color:#565656;
-    padding:5px;
-	margin-bottom:20px;
-    z-index:1;
+    z-index:2;
     box-shadow: 1px;
+    font-size:14px;
+}
+#Ticker table {
+    float:left;
+    width:100%;
+    height:4%;
+    top:-15px;
+    padding-top:0;
+    margin-top:1px;
+    position:fixed;
+    font-size:1rem;
+}
+#Ticker table td {
+    width:10%; 
+    text-align:center; 
+    color:#C0B283;
+}
+#ResourcesDiv {
+    top:4%;
+    margin:1%;
+    float:left;
+    padding:1%;
+    border-top:1px solid gray;
+    position:fixed;
+    z-index:1;
+    width:13%;
+    left:0%;
+    padding-top:2%;
 }
 #Resources {
     top:8%;
-    position:absolute;
-    margin-top:
     margin:1%;
-    clear:both;
     margin-right: 1.5%;
     z-index:1;
+    width:100%;
+}
+#ResThead {
+    background-color:#6ab04c;
+    color:black;
+    font-family: 'B612 Mono', sans-serif;
+    font-size: 18px;
+    font-weight:600;
+    text-align: left;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 5px;
+    border: 2px solid black;
 }
 #DeerDiv {
   background-color: #E9C893;
@@ -107,19 +145,6 @@ body {
     font-family: Lato;
     margin-bottom:5px;
     font-size: 12px;
-}
-#ResThead {
-    background-color:#6ab04c;
-    color:black;
-    font-family: 'B612 Mono', sans-serif;
-    font-size: 18px;
-    font-weight:600;
-    text-align: left;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 0px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 5px;
-    border: 2px solid black;
 }
 .MCtd { 
     background-color:#565656;
