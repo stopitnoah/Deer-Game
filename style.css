@@ -38,7 +38,7 @@ body {
     position:fixed;
     font-size:1rem;
 }
-#Ticker table tr td {
+.TickerTd{
     width:10%; 
     text-align:center; 
     color:#C0B283;
