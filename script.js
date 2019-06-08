@@ -355,11 +355,11 @@ $(document).ready(function(){
 function checkNumbers(){
     
     grasslandprice1 = 10 * Math.pow(grasslandpriceratio1, grasslandcount);
-    grasslandprice3 = 10 * Math.pow(grasslandpriceratio3, grasslandcount);
+    grasslandprice3 = 1 * Math.pow(grasslandpriceratio3, grasslandcount);
     forestcost1 = 10 * Math.pow(forestpriceratio2, forestcount);
-    forestcost2 = 10 * Math.pow(forestpriceratio2, forestcount);
+    forestcost2 = 1 * Math.pow(forestpriceratio2, forestcount);
     minecost1 = 10 * Math.pow(minepriceratio1, minecount);
-    minecost2 = 10 * Math.pow(minepriceratio2, minecount);
+    minecost2 = 1 * Math.pow(minepriceratio2, minecount);
     
     forestproduction = forestcount * forestwoodrate;
     forestoutput = forestproduction * forestproductionratio;
