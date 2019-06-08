@@ -117,7 +117,7 @@ var minepriceratio2 = 1.05; //Mine Price Ratio (Land)
 var mineminerratio = 1.25; //Mine Miner Boost 25%
 } //Mine Variables
 
-var scrapyardcount = 0; //Field Count
+var scrapyardcount = 0; //Scrapyard Count
 
 {
     
@@ -164,6 +164,7 @@ var age = 0;
     
 var aa = false;
 var ab = false;
+
     
 } //single-use booleans
 
@@ -184,11 +185,11 @@ $(document).ready(function(){
     $("#PromoteElder").hide();
     
     $("#HerdMgmt").click(function(){
-        $("#ui4").fadeOut(300);
-        $(".bldGroupContainer").show();
+        $("#ui4").slideUp(300);
+        $(".bldGroupContainer").fadeIn(300);
     })    
     $("#ScienceShow").click(function(){
-        $("#ui4").slideDown(300);
+        $("#ui4").slideToggle(300);
     })
     
     $("#SacrificeDeer").mouseover(function(){
@@ -315,10 +316,9 @@ $(document).ready(function(){
             sciencepoint = sciencepoint - agriculturecost;
             AgricultureRect.style.fill='#565656';
             grasslandcount = grasslandcount + 1;
-            $("#Grassland").toggle();
-            $("#LandDiv").toggle();
-            $("#WheatDiv").toggle();
-            $("#FarmerDiv").toggle();
+            $("#Grassland").show();
+            $("#LandDiv").show();
+            $("#WheatDiv").show();
             updatePage;
         }
     })
@@ -328,10 +328,9 @@ $(document).ready(function(){
             sciencepoint = sciencepoint - loggingcost;
             LoggingRect.style.fill='#565656';
             forestcount = forestcount + 1;
-            $("#Forest").toggle();
-            $("#LandDiv").toggle();
-            $("#WoodDiv").toggle();
-            $("#LoggerDiv").toggle();
+            $("#Forest").show();
+            $("#LandDiv").show();
+            $("#WoodDiv").show();
             updatePage;
         }
     })
@@ -341,10 +340,9 @@ $(document).ready(function(){
             sciencepoint = sciencepoint - miningcost;
             MiningRect.style.fill='#565656';
             minecount = minecount + 1;
-            $("#Mine").toggle();
-            $("#LandDiv").toggle();
-            $("#RockDiv").toggle();
-            $("#MinerDiv").toggle();
+            $("#Mine").show();
+            $("#LandDiv").show();
+            $("#RockDiv").show();
             updatePage;
         }
     })

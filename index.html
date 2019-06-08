@@ -1,8 +1,8 @@
 <html>
 <head>
+    <script type="text/javascript" src="https://cdn.rawgit.com/asvd/dragscroll/master/dragscroll.js"></script>
     <script src="lib/three.r92.min.js"></script>
     <script src="lib/p5.min.js"></script>
-    <script src="lib/vanta.net.min.js"></script>
     <script src="lib/vanta.waves.min.js"></script>
     <script src="lib/vanta.topology.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css">
@@ -26,9 +26,9 @@
         	<tr style="width:100%;">
                 <td class="TickerTd">Deer Game</td>
                 <td class="TickerTd">&nbsp;</td>
-                <td class="TickerTd"><span id="HerdMgmt" class="BirthButton">Herd Management</span>
+                <td class="TickerTd"><div id="HerdMgmt" class="tickerbtn">Herd Management</div>
                 </td>
-                <td class="TickerTd"><span id="ScienceShow" class="BirthButton" style="display:none">Science</span></td>
+                <td class="TickerTd"><div id="ScienceShow" class="tickerbtn" style="display:none">Science</span></td>
                 <td class="TickerTd">&nbsp;</td>
                 <td class="TickerTd">&nbsp;</td>
                 <td class="TickerTd">&nbsp;</td>
@@ -162,7 +162,7 @@
         </div>
     </div>
     <div id="ui3">
-        <div class="bldGroupContainer">
+        <div class="bldGroupContainer" style="display:none;">
             <div class="table1">
                 <div style="margin-right:2%">
                     <div style="vertical-align: top;">
@@ -170,31 +170,41 @@
                             <div class="btnContent">
                                 <span>Sacrifice Deer</span>
                             </div>
-                            <div id="SacrificeDeer2" class="Lato" style="display:none"><span class="Deercount">#</span>/<span>1</span> deer</div>
+                            <div id="SacrificeDeer2" class="Lato" style="display:none" class="info">
+                                <span class="Deercount">#</span>/<span>1</span> deer<div class="info">Generate Faith</div>
+                            </div>
                         </div>
                         <div class="btn modern" style="display:none" id="PromoteDeer">
                             <div class="btnContent">
                                 <span>Promote Elder</span>
                             </div>
-                            <div id="PromoteDeer2" class="Lato" style="display:none"><span class="Faithpoints">#</span>/<span class="Eldercost">#</span> faith <br><span class="Deercount">#</span>/<span>1</span> deer</div>
+                            <div id="PromoteDeer2" class="Lato" style="display:none" class="info">
+                                <span class="Faithpoints">#</span>/<span class="Eldercost">#</span> faith <br><span class="Deercount">#</span>/<span>1</span> deer<div class="info">Elders Generate Science</div>
+                            </div>
                         </div>
                         <div class="btn modern" style="display:none" id="Grassland">
                             <div class="btnContent">
                                 <span>Grassland </span>(<span id="GrasslandNum">1</span>)
                             </div>
-                            <div id="Grassland2" class="Lato" style="display:none"><span class="Seedpoints">#</span>/<span class="Grasslandcost1">#</span> Seeds <br><span class="Landcount">#</span>/<span class="Grasslandcost3">1</span> Land<div class="grasslandinfo">Grassland Provides</div></div>
+                            <div id="Grassland2" class="Lato" style="display:none" class="info">
+                                <span class="Seedpoints">#</span>/<span class="Grasslandcost1">#</span> Seeds <br><span class="Landcount">#</span>/<span class="info">1</span> Land<div class="grasslandinfo">Grasslands produce the Wheat necessary to employ Worker Deer</div>
+                            </div>
                         </div>
                         <div class="btn modern" style="display:none" id="Mine">
                             <div class="btnContent">
                                 <span>Mine </span>(<span id="MineNum">1</span>)
                             </div>
-                            <div id="Mine2" class="Lato" style="display:none"><span class="Woodpoints">#</span>/<span class="Minecost1">#</span> Wood <br><span class="Landcount">#</span>/<span class="Minecost2">1</span>Land</div>
+                            <div id="Mine2" class="Lato" style="display:none" class="info">
+                                <span class="Woodpoints">#</span>/<span class="Minecost1">#</span> Wood <br><span class="Landcount">#</span>/<span class="info">1</span>Land<div class="mineinfo">Mines produce the rocks required for buildings</div>
+                            </div>
                         </div>
                         <div class="btn modern" style="display:none" id="Forest">
                             <div class="btnContent">
                                 <span>Forest </span>(<span id="ForestNum">1</span>)
                             </div>
-                            <div id="Forest2" class="Lato" style="display:none"><span class="Rockpoints">#</span>/<span class="Forestcost1">#</span> Rocks <br><span class="Landcount">#</span>/<span class="Forestcost2">1</span> Land</div>
+                            <div id="Forest2" class="Lato" style="display:none" class="info">
+                                <span class="Rockpoints">#</span>/<span class="Forestcost1">#</span> Rocks <br><span class="Landcount">#</span>/<span class="info">1</span> Land<div class="forestinfo">Forests produce the wood required for buildings</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -205,58 +215,46 @@
     <div id="ui4" style="display:none;">
         <div class="ScienceContainer, simplebar-content-wrapper">
             <div data-simplebar id="SciencePage" class="simplebar-content">
-        <div class="svg-container">
-            <svg version="1.1" viewBox="0 0 500 500" preserveAspectRatio="xMinYMin meet" class="svg-content">
-                
-                <defs>
-                <marker id="arrow" markerWidth="4" markerHeight="10" viewBox="-2 -4 4 4" refX="0" refY="0" markerUnits="strokeWidth" orient="auto">
-                    <polyline points="2,-2 0,0 2,2" stroke="#443c3d" stroke-width="0.75px" fill="none"/>
-                </marker>
-                </defs>
-                
-                <g class="box-group">
-                    
-                    <g id="StartSci" transform="translate(-5)">
-                        <circle id="StartCircle" fill="#A7A7A7" cx="250" cy="50" r="45" opacity="1" />
-                        <text x="223" y="58" font-family="Lato" font-size="18" stroke="none" fill="#EFEFEF" font-weight="100" style="text-transform:uppercase; letter-spacing: 1px">Start</text>
-                    </g>        
-                    
-                    <line id="StartToMiningLine" x1="109" x2="201" y1="100" y2="65" stroke-width="2" stroke="#565656" stroke-dasharray="3,3" />
-                    
-                    <g id="MiningSci" transform="translate(0)">
-                        <rect id="MiningRect" fill="#CAEBF2" x="60" y="102" rx="3" ry="3" width="90" height="50" onclick=""/>                        
-                        <rect style="display:none;" id="MiningRect2" fill="#565656" x="60" y="102" rx="3" ry="3" width="90" height="50" />
-                        <text x="80" y="123" font-family="B612 Mono" font-size="10" stroke="none" fill="#000" font-weight="500" style="text-transform:uppercase; letter-spacing: 1px">Mining
-                            <tspan x="68" y="140">Science:10</tspan>
-                        </text>
-                    </g>
-
-                    <line id="StartToLoggingLine" x1="290" x2="385" y1="65" y2="100" stroke-width="2" stroke="#565656" stroke-dasharray="3,3" />
-      
-                    <g id="LoggingSci" transform="translate(0)">
-                        <rect id="LoggingRect" fill="#CAEBF2" x="340" y="102" rx="3" ry="3" width="90" height="50" />
-                        <text x="358" y="123" font-family="B612 Mono" font-size="10" stroke="none" fill="#000" font-weight="500" style="text-transform:uppercase; letter-spacing: 1px">Logging
-                            <tspan x="348" y="140">Science:10</tspan>
-                        </text>
-                    </g>
-                    
-                    <line id="StartToAgricultureLine" x1="245" x2="245" y1="95" y2="100" stroke-width="2" stroke="#565656" stroke-dasharray="2,1" />
-      
-                    <g id="AgricultureSci" transform="translate(0)">
-                        <rect id="AgricultureRect" fill="#CAEBF2" x="200" y="102" rx="3" ry="3" width="90" height="50" />
-                        <text x="205" y="123" font-family="B612 Mono" font-size="10" stroke="none" fill="#000" font-weight="500" style="text-transform:uppercase; letter-spacing: 1px">Agriculture
-                            <tspan x="208" y="140">Science:10</tspan>
-                          </text>
-                    </g>
-                    
-                </g>
-    
-                <g class="box-group" transform="translate(0,100)">
-                </g>
-  
-            </svg>
-        </div>
-    </div>
+                <div class="svg-container">
+                    <svg version="1.1" viewBox="0 0 500 500" preserveAspectRatio="xMinYMin meet" class="svg-content">                
+                        <defs>
+                            <marker id="arrow" markerWidth="4" markerHeight="10" viewBox="-2 -4 4 4" refX="0" refY="0" markerUnits="strokeWidth" orient="auto">
+                                <polyline points="2,-2 0,0 2,2" stroke="#443c3d" stroke-width="0.75px" fill="none"/>
+                            </marker>
+                        </defs>                
+                        <g class="box-group">
+                            
+                            <g id="MiningSci" transform="translate(0)">
+                                <rect id="MiningRect" fill="#CAEBF2" x="60" y="42" rx="3" ry="3" width="90" height="50" onclick=""/>
+                                <text x="80" y="63" font-family="B612 Mono" font-size="10" stroke="none" fill="#000" font-weight="500" style="text-transform:uppercase; letter-spacing: 1px">Mining
+                                    <tspan x="68" y="80">Science:10</tspan>
+                                </text>
+                            </g>
+                            
+                            <g id="LoggingSci" transform="translate(0)">
+                                <rect id="LoggingRect" fill="#CAEBF2" x="340" y="42" rx="3" ry="3" width="90" height="50" />
+                                <text x="358" y="63" font-family="B612 Mono" font-size="10" stroke="none" fill="#000" font-weight="500" style="text-transform:uppercase; letter-spacing: 1px">Logging
+                                    <tspan x="348" y="80">Science:10</tspan>
+                                </text>
+                            </g>
+                            
+                            <line id="StartToAgricultureLine" x1="245" x2="245" y1="95" y2="100" stroke-width="2" stroke="#565656" stroke-dasharray="2,1" />
+                            
+                            <g id="AgricultureSci" transform="translate(0)">
+                                <rect id="AgricultureRect" fill="#CAEBF2" x="200" y="42" rx="3" ry="3" width="90" height="50" />
+                                <text x="205" y="63" font-family="B612 Mono" font-size="10" stroke="none" fill="#000" font-weight="500" style="text-transform:uppercase; letter-spacing: 1px">Agriculture
+                                    <tspan x="208" y="80">Science:10</tspan>
+                                </text>
+                            </g>
+                            
+                        </g>
+                        
+                        <g class="box-group" transform="translate(0,100)">
+                        </g>
+                        
+                    </svg>
+                </div>
+            </div>
         </div>
     </div>
     
@@ -266,19 +264,10 @@
             </div>
         </div>
     </div>
-    
+        
     <script>
     </script>
     <script>
-        VANTA.NET({
-            el: "#ui5",
-            color: 0x7f8c8d,
-            backgroundColor: 0x34495e,
-            points: 10.00,
-            maxDistance: 20.00,
-            spacing:20,
-            showDots: true,
-        })
         VANTA.TOPOLOGY({
             el: "#ui2",
             color:0x1abc9c,

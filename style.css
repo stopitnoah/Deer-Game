@@ -1,3 +1,31 @@
+/*colors*/
+:root {
+    --blueriver:#3498db;
+    --bluelake:#2980b9;
+    --greenemerald:#2ecc71;
+    --greenforest:#27ae60;
+    --turquoise:#1abc9c;
+    --turquoisesea:#16a085;
+    
+    --purplelight:#9b59b6;
+    --purpleroyal:#9b59b6;
+    --purpledeep:#673AB7;
+
+    --yellowsunflower:#f1c40f;
+    --orange:#f39c12;
+}
+
+div {
+    text-align:center;
+}
+
+.info{
+    border-top:1px solid gray;
+    margin-top:1%;
+    margin-bottom:1%;
+    padding:3%;
+}
+
 body {
 	font-size: 20px;
 	font-family: 'Source Sans Pro', sans-serif;
@@ -69,12 +97,11 @@ body {
     top:4%;
     right:0%;
     width:50%;
-    border-left:1px solid black;
-    border-right:1px solid black;
+    border:1px solid #888;
     margin-right:0px;
-    background-color:#27ae60;
     overflow-y:hidden scroll;
     overflow-x:hidden scroll;
+    background-image:url(img/transparancy.png);
 }
 #ui5 {
     position:fixed;
@@ -88,6 +115,7 @@ body {
     top:80%;
 }
 #ResourcesDiv {
+    text-align: left;
     position:fixed;
     z-index:1;
     width:24%;
@@ -97,7 +125,7 @@ body {
     margin-bottom:1%;
     margin-left:0%;
     margin-right:0%;
-    padding-top:1%;
+    padding-top:2px;
     padding-bottom:1%;
     padding-left:0%;
     padding-right:0%;
@@ -228,6 +256,20 @@ span.fx:hover{
     color:#EFEFEF;
     clear:both;
 }
+.tickerbtn:active {
+    background-color:var(--blueriver);
+}
+.tickerbtn {
+    position:relative;
+    background-color:#4c6e90;
+    overflow:hidden;
+    padding:2%;
+    border: 1px solid gray;
+    font-weight:500;
+    font-family:lato;
+    color:var(--yellowsunflower);
+    cursor: pointer;
+}
 
 .background {
 position: absolute;
@@ -264,45 +306,6 @@ z-index: 0;
     margin:3%;
     margin-left:20%;
     z-index:1;
-}
-.BirthButton {
-	-moz-box-shadow:inset 0px 1px 0px 0px #9acc85;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #9acc85;
-	box-shadow:inset 0px 1px 0px 0px #9acc85;
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #74ad5a), color-stop(1, #68a54b));
-	background:-moz-linear-gradient(top, #74ad5a 5%, #68a54b 100%);
-	background:-webkit-linear-gradient(top, #74ad5a 5%, #68a54b 100%);
-	background:-o-linear-gradient(top, #74ad5a 5%, #68a54b 100%);
-	background:-ms-linear-gradient(top, #74ad5a 5%, #68a54b 100%);
-	background:linear-gradient(to bottom, #74ad5a 5%, #68a54b 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#74ad5a', endColorstr='#68a54b',GradientType=0);
-	background-color:#74ad5a;
-	border:1px solid #3b6e22;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:13px;
-	font-weight:bold;
-	padding:6px 12px;
-	text-decoration:none;
-    width:83%;
-    z-index: 10;
-    margin:2px;
-}
-.BirthButton:hover {
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #68a54b), color-stop(1, #74ad5a));
-	background:-moz-linear-gradient(top, #68a54b 5%, #74ad5a 100%);
-	background:-webkit-linear-gradient(top, #68a54b 5%, #74ad5a 100%);
-	background:-o-linear-gradient(top, #68a54b 5%, #74ad5a 100%);
-	background:-ms-linear-gradient(top, #68a54b 5%, #74ad5a 100%);
-	background:linear-gradient(to bottom, #68a54b 5%, #74ad5a 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#68a54b', endColorstr='#74ad5a',GradientType=0);
-	background-color:#68a54b;
-}
-.BirthButton:active {
-	position:relative;
-	top:1px;
 }
 .Lato {
     font-family: Lato;
@@ -589,7 +592,6 @@ table.cinereousTable b {
 	padding-bottom: 100%;
 	vertical-align: middle; 
 	overflow: hidden; 
-  background: #f5f3e7;
 }
 
 .svg-content { 
