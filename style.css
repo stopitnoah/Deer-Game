@@ -5,9 +5,6 @@ body {
 	overflow:hidden;
     user-select:none;
 }
-#Body {
-    margin-top:3%;
-}
 #BodyTable{
     margin-top:1%;
     width:auto;
@@ -23,7 +20,8 @@ body {
     width:100%;
     height:4%;
 	overflow: hidden;
-	background-color:#565656;
+	background-color:#2c3e50;
+    border-bottom:1px solid black;
     z-index:2;
     box-shadow: 1px;
     font-size:14px;
@@ -43,6 +41,50 @@ body {
     text-align:center; 
     color:#C0B283;
 }
+#ui2{
+    position:fixed;
+    height:100%;
+    z-index:0;
+    left:0%;
+    width:24%;
+    border-left:1px solid black;
+    border-right:1px solid black;
+    margin-right:0px;
+    background-color:#16a085;
+}
+#ui3 {
+    position:fixed;
+    height:100%;
+    z-index:0;
+    left:24%;
+    width:76%;
+    border-left:1px solid black;
+    border-right:1px solid black;
+    margin-right:0px;
+    background-color:#27ae60;
+}
+#ui4 {
+    position:fixed;
+    height:100%;
+    z-index:0;
+    left:24%;
+    width:76%;
+    border-left:1px solid black;
+    border-right:1px solid black;
+    margin-right:0px;
+    background-color:#27ae60;
+}
+#ui5 {
+    position:fixed;
+    height:20%;
+    z-index:0;
+    left:60%;
+    width:40%;
+    border:1px solid black;
+    margin-right:0px;
+    background-color:#34495e;
+    top:80%;
+}
 #ResourcesDiv {
     top:4%;
     margin:1%;
@@ -51,7 +93,7 @@ body {
     border-top:1px solid gray;
     position:fixed;
     z-index:1;
-    width:13%;
+    width:18%;
     left:0%;
     padding-top:2%;
 }
@@ -97,9 +139,6 @@ body {
 #RockDiv, #MinerDiv{
     background-color:#A1A1A1;
 }
-#UnicornDiv {
-    background-color:#C0B283;
-}
 #MissionControl {
     width:500px;
     overflow-x:hidden;
@@ -114,10 +153,8 @@ body {
     color:#E9C893;
 }
 #Log { 
-    position:absolute;
-    top:3%;
-    right:3%;
-    height:40%;
+    position:relative;
+    padding-left:5%;
 }
 #tooltip {
     width:100px;
@@ -166,27 +203,25 @@ span.fx:hover{
 .console { 
     font-family: 'B612 Mono', monospace;
     width: 40%;
-    float:right;
+    float:left;
     font-size:12px;
 }
 .btn.modern:active {
     border-color: #777;
-    background: #F9F9F9;
+    background-color: #2980b9;
 }
 .btn.modern {
-    font-family: Helvetica;
-    font-size: 14px;
-    border-radius: 3px;
+    font-family: Source Sans Pro;
+    font-size: 1em;
+    border-radius:3px;
     border: 1px solid #888;
-    padding: 0;
-    width: 264px;
-    background-color:palegoldenrod;
+    padding:10px;
+    width:13em;
+    margin:1%;
+    background-color:##2ecc71;
     position: relative; 
     display: block; 
-    margin-left: auto; 
-    margin-right: 5px;
     cursor: pointer;
-    padding: 10px 0 10px 10px;
 }
 .background {
 position: absolute;
@@ -198,42 +233,26 @@ z-index: 0;
 .btn.modern.hidden {
     display:none;
 }
-.btn.science {
-    font-family: Helvetica;
-    font-size: 14px;
-    border-radius: 3px;
-    border: 1px solid #888;
-    padding: 3px;
-    width: 264px;
-    background-color:#CAEBF2;
-    position: relative; 
-    display: block; 
-    margin-left: auto; 
-    margin-right: auto;
-    cursor: pointer;
-}
-.btn.science:active {
-    border-color: #777;
-    background: #F9F9F9;
-}
 .btn {
     border: 1px solid black;
-    padding: 5px;
+    padding: 1%;
     cursor: default;
-    width: 170px;
+    width:100%;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 1%;
+    float:left;
 }
 .bldGroupContainer {
-    padding-top: 15px;
-    position:fixed;
-    border-top: 1px solid gray;
-    width:auto;
+    top:4%;
+    margin:1%;
     float:left;
-    margin:3%;
-    margin-top:3%;
-    margin-left:20%;
-    z-index:5;
+    padding:1%;
+    border-top:1px solid gray;
+    width:auto;
+    position:relative;
+    z-index:1;
+    margin-left:4%;
+    padding-top:2%;
 }
 .sciGroupContainer {
     padding-top: 15px;
@@ -389,12 +408,15 @@ table.cinereousTable b {
 }
 
 .wrapper {
-    width:40%;
+    width:60%;
+    position:absolute;
     float:right;
     margin:1%;
     margin-top:3%;
     border: 2px solid gray;
     background-color:CAEBF2;
+    bottom:1%;
+    left:1%;
 }
 
 .svg-container { 

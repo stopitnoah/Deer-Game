@@ -141,7 +141,7 @@ var faithincrement = 1;  //Faith Points per Sacrifice
 var faithmax = 25; //Faith storage
 var faithrate = 0; //Faith per second
 
-var sciencepoint = 0;
+var sciencepoint = 1;
 var scienceincrement = 0;
 var sciencemax = 20;
 var sciencerate = 0;
@@ -188,16 +188,16 @@ $(document).ready(function(){
     $("#PromoteElder").hide();
     
     $("#HerdMgmt").click(function(){
-        $("#MissionControl").fadeOut(300);
-        $(".sciGroupContainer").slideUp(300);
+        $("#ui4").fadeOut(300);
         setTimeout(300);
         $(".bldGroupContainer").show();
+        $("#ui3").slideDown(2000);
     })    
     $("#ScienceShow").click(function(){
-        $(".bldGroupContainer").fadeOut(300);
-        $("#MissionControl").fadeOut(300);
+        $("#ui3").fadeOut(300);
         setTimeout(300);
-        $("#sciencePage").toggle();
+        $("#sciencePage").show();
+        $("#ui4").slideDown(2000);
     })
     
     $("#SacrificeDeer").mouseover(function(){
@@ -489,8 +489,6 @@ function updatePage() {
     $(".Deercount").text(deercount.toFixed(0));
     $(".DeerMax").text("/" + deermax.toFixed(0));
         
-    $(".Unicorncount").text(unicorncount.toFixed(2));
-        
     $(".Eldercost").text(eldercost.toFixed(1));
     $(".Eldercount").text(eldercount.toFixed(0));
     $(".ElderMax").text("/" + eldermax.toFixed(0));
@@ -525,10 +523,10 @@ function updatePage() {
     if(deercount >= 1){
         $("#SacrificeDeer").css("background-color", "palegoldenrod");
     }
-    if(deercount > 1 && faithpoint >= eldercost && eldercount < eldermax){
+    if(deercount >= 1 && faithpoint >= eldercost && eldercount < eldermax){
         $("#PromoteDeer").css("background-color", "palegoldenrod");
     }
-    if(deercount < 1 || faithpoint <= eldercost || eldercount >= eldermax){
+    if(deercount < 1 || faithpoint < eldercost || eldercount >= eldermax){
         $("#PromoteDeer").css("background-color", "#A9A9A9");
     }
     if(deercount >= 1 && faithpoint < faithmax){
@@ -586,9 +584,6 @@ function updatePage() {
     } //Science Buttons Active Styling
     
 }
-
-
-function rollUnicorn(){};
 
 setInterval(function gameTick(){
     hour = hour + 1;
