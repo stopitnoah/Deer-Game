@@ -126,12 +126,8 @@ var elderincrement = 1; //ElderIncrement
 var eldermax = 5; //Elder Max
 var elderrate = 1.25; //Elder Price Ratio
 var eldercost = 5; //Elder Base Price
-var eldersciprod = 0.05; //Elder Base Science Production
+var eldersciprod = 0.10; //Elder Base Science Production
 
-var unicorncount = 0; //Unicorns
-var unicornincrement = 0.01;
-var unicornmax = 10000000;
-    
 } //Elder Variables
 
 {
@@ -189,15 +185,10 @@ $(document).ready(function(){
     
     $("#HerdMgmt").click(function(){
         $("#ui4").fadeOut(300);
-        setTimeout(300);
         $(".bldGroupContainer").show();
-        $("#ui3").slideDown(2000);
     })    
     $("#ScienceShow").click(function(){
-        $("#ui3").fadeOut(300);
-        setTimeout(300);
-        $("#sciencePage").show();
-        $("#ui4").slideDown(2000);
+        $("#ui4").slideDown(300);
     })
     
     $("#SacrificeDeer").mouseover(function(){
@@ -356,6 +347,10 @@ $(document).ready(function(){
             $("#MinerDiv").toggle();
             updatePage;
         }
+    })
+    
+    $(".btn").mousedown(function() {
+        $(this).css("background-color", "#2ecc71");
     })
 })
 
@@ -521,34 +516,34 @@ function updatePage() {
     $(".Minecost2").text(minecost2.toFixed(2));
         
     if(deercount >= 1){
-        $("#SacrificeDeer").css("background-color", "palegoldenrod");
+        $("#SacrificeDeer").css("background-color", "#27ae60");
     }
     if(deercount >= 1 && faithpoint >= eldercost && eldercount < eldermax){
-        $("#PromoteDeer").css("background-color", "palegoldenrod");
+        $("#PromoteDeer").css("background-color", "#27ae60");
     }
     if(deercount < 1 || faithpoint < eldercost || eldercount >= eldermax){
         $("#PromoteDeer").css("background-color", "#A9A9A9");
     }
     if(deercount >= 1 && faithpoint < faithmax){
-        $("#SacrificeDeer").css("background-color", "palegoldenrod");
+        $("#SacrificeDeer").css("background-color", "#27ae60");
     }
     if(deercount < 1 || faithpoint >= faithmax){
         $("#SacrificeDeer").css("background-color", "#A9A9A9");
     }
     if(seedpoint >= grasslandprice1 && landcount >= grasslandprice3){
-        $("#Grassland").css("background-color", "palegoldenrod");
+        $("#Grassland").css("background-color", "#27ae60");
     }
     if(grasslandprice1 > seedpoint || grasslandprice3 > landcount){
         $("#Grassland").css("background-color", "#A9A9A9");
     }
     if(forestcost1 <= rockpoint && forestcost2 <= landcount){
-        $("#Forest").css("background-color", "palegoldenrod");
+        $("#Forest").css("background-color", "#27ae60");
     }
     if(forestcost1 > rockpoint || forestcost2 > landcount){
         $("#Forest").css("background-color", "#A9A9A9");
     }
     if(minecost1 <= woodpoint && minecost2 <= landcount){
-        $("#Mine").css("background-color", "palegoldenrod");
+        $("#Mine").css("background-color", "#27ae60");
     }
     if(minecost1 > woodpoint || minecost2 > landcount){
         $("#Mine").css("background-color", "#A9A9A9");

@@ -1,9 +1,12 @@
 <html>
 <head>
     <script src="lib/three.r92.min.js"></script>
-    <script src="lib/vanta.net.min.js"></script>
     <script src="lib/p5.min.js"></script>
+    <script src="lib/vanta.net.min.js"></script>
+    <script src="lib/vanta.waves.min.js"></script>
     <script src="lib/vanta.topology.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css">
+    <script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.0.12/svg.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=B612+Mono|Lato:700|Roboto:300|Source+Sans+Pro:200&display=swap" rel="stylesheet">
@@ -21,16 +24,17 @@
 	<div id="Ticker">
     	<table>
         	<tr style="width:100%;">
-                <td class="TickerTd">Deer Hamlet</td>
-            	<td class="TickerTd"><span id="Date"></span></td>
-    			<td class="TickerTd"><span id="Time"></span><span id="Meridian">am</span></td>
+                <td class="TickerTd">Deer Game</td>
+                <td class="TickerTd">&nbsp;</td>
                 <td class="TickerTd"><span id="HerdMgmt" class="BirthButton">Herd Management</span>
                 </td>
                 <td class="TickerTd"><span id="ScienceShow" class="BirthButton" style="display:none">Science</span></td>
                 <td class="TickerTd">&nbsp;</td>
                 <td class="TickerTd">&nbsp;</td>
                 <td class="TickerTd">&nbsp;</td>
-                <td class="TickerTd">0.0.1.4.0</td> 
+                <td class="TickerTd">&nbsp;</td>
+                <td class="TickerTd">&nbsp;</td>
+                <td class="TickerTd">0.0.1.4.1</td> 
                 <!-- Major Update, Minor Update, Version, Patch -->
                 <td class="TickerTd" style="padding-top:20px;">
                     <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
@@ -51,27 +55,30 @@
     </div>
     
     <div id="ui2">
+        <div id="infobar">&nbsp;&nbsp;&bull;&nbsp;&nbsp;<span id="Date"></span>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<span id="Time"></span><span id="Meridian">am</span></div>
         <div id="resourcesDiv">
-            <table id="Resources" class="cinereousTable">
-                    <thead>
-                        <tr>
-                            <td colspan="5"><div id="ResThead">&nbsp;Resources:</div></td>
-                        </tr>
-                    </thead>
-                    <tr id="DeerDiv" class="hidden">
-                        <td><img src="img/deer.png" style="width:16px;height:16px;"></td>
+            <table id="Resources">
+                    <tr id="ResourcesHeader">&nbsp;&nbsp;Resources</tr>
+                    <tr id="DeerDiv" class="ResourceRow">
+                        <td><img src="img/deer.png" style="width:32px;height:32px;"></td>
                         <td>Deer</td>
                         <td><span class="Deercount">#</span></td>
                         <td><span class="DeerMax" class="pencil">#</span></td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
                     </tr>
-                    <tr id="ElderDiv" class="hidden">
-                        <td><img src="img/elder.png" style="width:16px;height:16px;"></td>
+                    <tr id="ElderDiv" class="ResourceRow">
+                        <td><img src="img/elder.png" style="width:32px;height:32px;"></td>
                         <td>Elder</td>
                         <td><span class="Eldercount">#</span></td>
                         <td><span class="ElderMax" class="pencil">#</span></td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
                     </tr>
-                    <tr id="FarmerDiv" class="hidden" style="font-family:Lato">
-                        <td><img src="img/elder.png" style="width:16px;height:16px;"></td>
+                    <tr id="FarmerDiv" class="ResourceRow" style="font-family:Lato">
+                        <td><img src="img/farmer.png" style="width:32px;height:32px;"></td>
                         <td>Farmer</td>
                         <td><span class="jobfarmers">#</span></td>
                         <td><span class="employablefarmers" class="pencil">#</span></td>
@@ -79,8 +86,8 @@
                         <td id="farmerminus"><span><</span></td>
                         <td id="farmerplus"><span>></span></td>
                     </tr>
-                    <tr id="LoggerDiv" class="hidden" style="font-family:Lato;color:white;">
-                        <td><img src="img/elder.png" style="width:16px;height:16px;"></td>
+                    <tr id="LoggerDiv" class="ResourceRow" style="font-family:Lato;color:white;">
+                        <td><img src="img/logger.png" style="width:32px;height:32px;"></td>
                         <td>Logger</td>
                         <td><span class="jobloggers">#</span></td>
                         <td><span class="employableloggers" class="pencil">#</span></td>
@@ -88,8 +95,8 @@
                         <td id="loggerminus"><span><</span></td>
                         <td id="loggerplus"><span>></span></td>
                     </tr>
-                    <tr id="MinerDiv" class="hidden" style="font-family:Lato">
-                        <td><img src="img/elder.png" style="width:16px;height:16px;"></td>
+                    <tr id="MinerDiv" class="ResourceRow" style="font-family:Lato">
+                        <td><img src="img/miner.png" style="width:32px;height:32px;"></td>
                         <td>Miner</td>
                         <td><span class="jobminers">#</span></td>
                         <td><span class="employableminers" class="pencil">#</span></td>
@@ -97,61 +104,79 @@
                         <td id="minerminus"><span><</span></td>
                         <td id="minerplus"><span>></span></td>
                     </tr>
-                    <tr id="ScienceDiv" class="hidden">
-                        <td><img src="img/science.png" style="width:16px;height:16px;"></td>
+                    <tr id="ScienceDiv" class="ResourceRow">
+                        <td><img src="img/science.png" style="width:32px;height:32px;"></td>
                         <td>Science</td>
                         <td><span class="Sciencepoints">#</span></td>
                         <td><span class="ScienceMax" class="pencil">#</span> </td>
                         <td><span class="ScienceRate">#</span></td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
                     </tr>
-                    <tr id="FaithDiv" class="hidden">
-                        <td><img src="img/faith.png" style="width:16px;height:16px;"></td>
+                    <tr id="FaithDiv" class="ResourceRow">
+                        <td><img src="img/faith.png" style="width:32px;height:32px;"></td>
                         <td>Faith</td>
                         <td><span class="Faithpoints">#</span></td>
                         <td><span class="FaithMax" class="pencil">#</span> </td>
                         <td><span class="FaithRate">#</span></td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
                     </tr>
-                    <tr id="LandDiv" class="hidden">
-                        <td><img src="img/land.png" style="width:16px;height:16px;"></td>
+                    <tr id="LandDiv" class="ResourceRow">
+                        <td><img src="img/land.png" style="width:32px;height:32px;"></td>
                         <td>Land</td>
                         <td><span class="Landcount">#</span></td>
                         <td><span class="Landmax" class="pencil">#</span> </td>
                         <td><span class="Landrate">#</span></td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
                     </tr>
-                    <tr id="RockDiv" class="hidden">
-                        <td><img src="img/rock.png" style="width:16px;height:16px;"></td>
+                    <tr id="RockDiv" class="ResourceRow">
+                        <td><img src="img/rock.png" style="width:32px;height:32px;"></td>
                         <td>Rock</td>
                         <td><span class="Rockpoints">#</span></td>
                         <td><span class="Rockmax" class="pencil">#</span> </td>
                         <td><span class="Rockrate">#</span></td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
                     </tr>
-                    <tr id="WheatDiv" class="hidden">
-                        <td><img src="img/wheat.png" style="width:16px;height:16px;"></td>
+                    <tr id="WheatDiv" class="ResourceRow">
+                        <td><img src="img/wheat.png" style="width:32px;height:32px;"></td>
                         <td>Wheat</td>
                         <td><span class="Wheatpoints">#</span></td>
                         <td><span class="Wheatmax" class="pencil">#</span> </td>
-                        <td><span class="Wheatrate">#</span></td>
+                        <td><span class="Wheadivate">#</span></td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
                     </tr>
-                    <tr id="WoodDiv" class="hidden">
-                        <td><img src="img/wood.png" style="width:16px;height:16px;"></td>
+                    <tr id="WoodDiv" class="ResourceRow">
+                        <td><img src="img/wood.png" style="width:32px;height:32px;"></td>
                         <td>Wood</td>
                         <td><span class="Woodpoints">#</span></td>
                         <td><span class="Woodmax" class="pencil">#</span> </td>
                         <td><span class="Woodrate">#</span></td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
                     </tr>
             </table>
         </div>
     </div>
-    <div id="ui3" style="display:none">
-        <div class="bldGroupContainer" style="display:none;">
-            <table class="table1" cellpadding="0" cellspacing="0" style="width: 100%;">
-                <tr style="margin-right:2%">
-                    <td style="vertical-align: top;">
+    <div id="ui3">
+        <div class="bldGroupContainer">
+            <div class="table1">
+                <div style="margin-right:2%">
+                    <div style="vertical-align: top;">
                         <div class="btn modern" id="SacrificeDeer">
                             <div class="btnContent">
                                 <span>Sacrifice Deer</span>
-                                    </div>
+                            </div>
                             <div id="SacrificeDeer2" class="Lato" style="display:none"><span class="Deercount">#</span>/<span>1</span> deer</div>
+                        </div>
+                        <div class="btn modern" style="display:none" id="PromoteDeer">
+                            <div class="btnContent">
+                                <span>Promote Elder</span>
+                            </div>
+                            <div id="PromoteDeer2" class="Lato" style="display:none"><span class="Faithpoints">#</span>/<span class="Eldercost">#</span> faith <br><span class="Deercount">#</span>/<span>1</span> deer</div>
                         </div>
                         <div class="btn modern" style="display:none" id="Grassland">
                             <div class="btnContent">
@@ -165,29 +190,21 @@
                             </div>
                             <div id="Mine2" class="Lato" style="display:none"><span class="Woodpoints">#</span>/<span class="Minecost1">#</span> Wood <br><span class="Landcount">#</span>/<span class="Minecost2">1</span>Land</div>
                         </div>
-                    </td>
-                    <td style="vertical-align: top;">
-                        <div class="btn modern" style="display:none" id="PromoteDeer">
-                            <div class="btnContent">
-                                <span>Promote Elder</span>
-                            </div>
-                            <div id="PromoteDeer2" class="Lato" style="display:none"><span class="Faithpoints">#</span>/<span class="Eldercost">#</span> faith <br><span class="Deercount">#</span>/<span>1</span> deer</div>
-                        </div>
                         <div class="btn modern" style="display:none" id="Forest">
                             <div class="btnContent">
                                 <span>Forest </span>(<span id="ForestNum">1</span>)
                             </div>
                             <div id="Forest2" class="Lato" style="display:none"><span class="Rockpoints">#</span>/<span class="Forestcost1">#</span> Rocks <br><span class="Landcount">#</span>/<span class="Forestcost2">1</span> Land</div>
                         </div>
-                    </td>
-                </tr>
-            </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    
     <div id="ui4" style="display:none;">
-        <div class="ScienceContainer">
-            
-    <div class="wrapper" id="sciencePage" style="display:none;">
+        <div class="ScienceContainer, simplebar-content-wrapper">
+            <div data-simplebar id="SciencePage" class="simplebar-content">
         <div class="svg-container">
             <svg version="1.1" viewBox="0 0 500 500" preserveAspectRatio="xMinYMin meet" class="svg-content">
                 
@@ -242,6 +259,7 @@
     </div>
         </div>
     </div>
+    
     <div id="ui5" style="display:none;">
         <div id="ConsoleLog" class="console">
             <div id="log">
@@ -249,6 +267,8 @@
         </div>
     </div>
     
+    <script>
+    </script>
     <script>
         VANTA.NET({
             el: "#ui5",
@@ -259,16 +279,14 @@
             spacing:20,
             showDots: true,
         })
-    </script>
-    <script>
         VANTA.TOPOLOGY({
             el: "#ui2",
             color:0x1abc9c,
             backgroundColor: 0x16a085,
         })
-        VANTA.TOPOLOGY({
+        VANTA.WAVES({
             el: "#ui3",
-            color:0x2ecc71,
+            color:0x27ae60,
             backgroundColor: 0x27ae60,
         })
     </script>

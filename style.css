@@ -13,7 +13,7 @@ body {
     float:right;
 }
 #Ticker {
-    color:#C0B283;
+    color:#6aa84f;
     position:absolute;
     top:0px;
     left:0px;
@@ -41,15 +41,14 @@ body {
     text-align:center; 
     color:#C0B283;
 }
-#ui2{
+#ui2 {
+    border:1px solid black;
     position:fixed;
     height:100%;
     z-index:0;
     left:0%;
     width:24%;
-    border-left:1px solid black;
-    border-right:1px solid black;
-    margin-right:0px;
+    padding-left:0;
     background-color:#16a085;
 }
 #ui3 {
@@ -65,14 +64,17 @@ body {
 }
 #ui4 {
     position:fixed;
-    height:100%;
+    height:60%;
     z-index:0;
-    left:24%;
-    width:76%;
+    top:4%;
+    right:0%;
+    width:50%;
     border-left:1px solid black;
     border-right:1px solid black;
     margin-right:0px;
     background-color:#27ae60;
+    overflow-y:hidden scroll;
+    overflow-x:hidden scroll;
 }
 #ui5 {
     position:fixed;
@@ -86,16 +88,21 @@ body {
     top:80%;
 }
 #ResourcesDiv {
-    top:4%;
-    margin:1%;
-    float:left;
-    padding:1%;
-    border-top:1px solid gray;
     position:fixed;
     z-index:1;
-    width:18%;
-    left:0%;
-    padding-top:2%;
+    width:24%;
+    float:left;
+    left:-3px;
+    margin-top:3%;
+    margin-bottom:1%;
+    margin-left:0%;
+    margin-right:0%;
+    padding-top:1%;
+    padding-bottom:1%;
+    padding-left:0%;
+    padding-right:0%;
+    border-top:1px solid gray;
+    font-family: lato;
 }
 #Resources {
     top:8%;
@@ -103,6 +110,7 @@ body {
     margin-right: 1.5%;
     z-index:1;
     width:100%;
+    border-collapse: collapse;
 }
 #ResThead {
     background-color:#6ab04c;
@@ -117,27 +125,22 @@ body {
     border-bottom-right-radius: 5px;
     border: 2px solid black;
 }
-#DeerDiv {
-  background-color: #E9C893;
+#InfoBar {
+    position:fixed;
+    z-index:3;
+    margin-top:2rem;
+    text-align:right;
+    width:23%;
+    color:#565656;
 }
-#ScienceDiv, #ElderDiv {
-    background-color:#c7ecee;
-}
-#FaithDiv {
-  background-color: #dff9fb;
-}
-#LandDiv {
-    background-color:#b6d7a8;
-}
-#WheatDiv, #FarmerDiv{
-    background-color:#f6e58d;
-}
-#WoodDiv, #LoggerDiv{
-    background-color:#f0932b;
-    color:white;
-}
-#RockDiv, #MinerDiv{
-    background-color:#A1A1A1;
+.ResourceRow {
+    height:5%;
+    display:none;
+    background-image:url(img/transparancy.png);
+    border-top:1px solid black;
+    border-bottom:1px solid black;
+    padding:1%;
+    text-align:left;
 }
 #MissionControl {
     width:500px;
@@ -211,18 +214,21 @@ span.fx:hover{
     background-color: #2980b9;
 }
 .btn.modern {
-    font-family: Source Sans Pro;
-    font-size: 1em;
+    font-family: Roboto;
+    font-size: 14px;
     border-radius:3px;
     border: 1px solid #888;
     padding:10px;
     width:13em;
     margin:1%;
-    background-color:##2ecc71;
+    background-color:#2ecc71;
     position: relative; 
     display: block; 
     cursor: pointer;
+    color:#EFEFEF;
+    clear:both;
 }
+
 .background {
 position: absolute;
 display: block;
@@ -243,16 +249,10 @@ z-index: 0;
     float:left;
 }
 .bldGroupContainer {
-    top:4%;
-    margin:1%;
-    float:left;
-    padding:1%;
-    border-top:1px solid gray;
     width:auto;
-    position:relative;
-    z-index:1;
-    margin-left:4%;
-    padding-top:2%;
+    margin-top:3%;
+    margin-left:1%;
+    background-color:none;
 }
 .sciGroupContainer {
     padding-top: 15px;
@@ -265,6 +265,45 @@ z-index: 0;
     margin-left:20%;
     z-index:1;
 }
+.BirthButton {
+	-moz-box-shadow:inset 0px 1px 0px 0px #9acc85;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #9acc85;
+	box-shadow:inset 0px 1px 0px 0px #9acc85;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #74ad5a), color-stop(1, #68a54b));
+	background:-moz-linear-gradient(top, #74ad5a 5%, #68a54b 100%);
+	background:-webkit-linear-gradient(top, #74ad5a 5%, #68a54b 100%);
+	background:-o-linear-gradient(top, #74ad5a 5%, #68a54b 100%);
+	background:-ms-linear-gradient(top, #74ad5a 5%, #68a54b 100%);
+	background:linear-gradient(to bottom, #74ad5a 5%, #68a54b 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#74ad5a', endColorstr='#68a54b',GradientType=0);
+	background-color:#74ad5a;
+	border:1px solid #3b6e22;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:13px;
+	font-weight:bold;
+	padding:6px 12px;
+	text-decoration:none;
+    width:83%;
+    z-index: 10;
+    margin:2px;
+}
+.BirthButton:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #68a54b), color-stop(1, #74ad5a));
+	background:-moz-linear-gradient(top, #68a54b 5%, #74ad5a 100%);
+	background:-webkit-linear-gradient(top, #68a54b 5%, #74ad5a 100%);
+	background:-o-linear-gradient(top, #68a54b 5%, #74ad5a 100%);
+	background:-ms-linear-gradient(top, #68a54b 5%, #74ad5a 100%);
+	background:linear-gradient(to bottom, #68a54b 5%, #74ad5a 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#68a54b', endColorstr='#74ad5a',GradientType=0);
+	background-color:#68a54b;
+}
+.BirthButton:active {
+	position:relative;
+	top:1px;
+}
 .Lato {
     font-family: Lato;
     font-size: 12px;
@@ -273,13 +312,176 @@ z-index: 0;
     padding-top: 5px;
     width:95%;
 }
-.table1 {
-    background-image:linear-gradient(#A9A9A9, #EFEFEF);
-    border:1px solid grey;
-    border-radius: 3px;
-    padding:10px;
-    z-index:1;
-    position:relative;
+
+    
+[data-simplebar] {
+    position: relative;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: flex-start;
+}
+.simplebar-wrapper {
+    overflow: hidden;
+    width: inherit;
+    height: inherit;
+    max-width: inherit;
+    max-height: inherit;
+}
+.simplebar-mask {
+    direction: inherit;
+    position: absolute;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: auto !important;
+    height: auto !important;
+    z-index: 0;
+}
+.simplebar-offset {
+    direction: inherit !important;
+    box-sizing: inherit !important;
+    resize: none !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding: 0;
+    margin: 0;
+    -webkit-overflow-scrolling: touch;
+}
+.simplebar-content-wrapper {
+    direction: inherit;
+    box-sizing: border-box !important;
+    position: relative;
+    display: block;
+    height: 100%; /* Required for horizontal native scrollbar to not appear if parent is taller than natural height */
+    width: auto;
+    visibility: visible;
+    overflow: auto; /* Scroll on this element otherwise element can't have a padding applied properly */
+    max-width: 100%; /* Not required for horizontal scroll to trigger */
+    max-height: 100%; /* Needed for vertical scroll to trigger */
+}
+.simplebar-content:before,
+.simplebar-content:after {
+    content: " ";
+    display: table;
+}
+.simplebar-placeholder {
+    max-height: 100%;
+    max-width: 100%;
+    width: 100%;
+    pointer-events: none;
+}
+.simplebar-height-auto-observer-wrapper {
+    box-sizing: inherit !important;
+    height: 100%;
+    width: inherit;
+    max-width: 1px;
+    position: relative;
+    float: left;
+    max-height: 1px;
+    overflow: hidden;
+    z-index: -1;
+    padding: 0;
+    margin: 0;
+    pointer-events: none;
+    flex-grow: inherit;
+    flex-shrink: 0;
+    flex-basis: 0;
+}
+.simplebar-height-auto-observer {
+    box-sizing: inherit;
+    display: block;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 1000%;
+    width: 1000%;
+    min-height: 1px;
+    min-width: 1px;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
+}
+.simplebar-track {
+    z-index: 1;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+[data-simplebar].simplebar-dragging .simplebar-track {
+  pointer-events: all;
+}
+.simplebar-scrollbar {
+    position: absolute;
+    right: 2px;
+    width: 7px;
+    min-height: 10px;
+}
+.simplebar-scrollbar:before {
+    position: absolute;
+    content: "";
+    background: black;
+    border-radius: 7px;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transition: opacity 0.2s linear;
+}
+.simplebar-track .simplebar-scrollbar.simplebar-visible:before {
+    /* When hovered, remove all transitions from drag handle */
+    opacity: 0.5;
+    transition: opacity 0s linear;
+}
+.simplebar-track.simplebar-vertical {
+    top: 0;
+    width: 11px;
+}
+.simplebar-track.simplebar-vertical .simplebar-scrollbar:before {
+    top: 2px;
+    bottom: 2px;
+}
+.simplebar-track.simplebar-horizontal {
+    left: 0;
+    height: 11px;
+}
+.simplebar-track.simplebar-horizontal .simplebar-scrollbar:before {
+    height: 100%;
+    left: 2px;
+    right: 2px;
+}
+.simplebar-track.simplebar-horizontal .simplebar-scrollbar {
+    right: auto;
+    left: 0;
+    top: 2px;
+    height: 7px;
+    min-height: 0;
+    min-width: 10px;
+    width: auto;
+}
+[data-simplebar-direction="rtl"] .simplebar-track.simplebar-vertical {
+    right: auto;
+    left: 0;
+}
+.hs-dummy-scrollbar-size {
+    direction: rtl;
+    position: fixed;
+    opacity: 0;
+    visibility: hidden;
+    height: 500px;
+    width: 500px;
+    overflow-y: hidden;
+    overflow-x: scroll;
 }
 
 table.comicGreen {
@@ -366,45 +568,6 @@ table.cinereousTable tbody td {
 }
 table.cinereousTable b {
 	color:#38761d;
-}
-.BirthButton {
-	-moz-box-shadow:inset 0px 1px 0px 0px #9acc85;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #9acc85;
-	box-shadow:inset 0px 1px 0px 0px #9acc85;
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #74ad5a), color-stop(1, #68a54b));
-	background:-moz-linear-gradient(top, #74ad5a 5%, #68a54b 100%);
-	background:-webkit-linear-gradient(top, #74ad5a 5%, #68a54b 100%);
-	background:-o-linear-gradient(top, #74ad5a 5%, #68a54b 100%);
-	background:-ms-linear-gradient(top, #74ad5a 5%, #68a54b 100%);
-	background:linear-gradient(to bottom, #74ad5a 5%, #68a54b 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#74ad5a', endColorstr='#68a54b',GradientType=0);
-	background-color:#74ad5a;
-	border:1px solid #3b6e22;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:13px;
-	font-weight:bold;
-	padding:6px 12px;
-	text-decoration:none;
-    width:83%;
-    z-index: 10;
-    margin:2px;
-}
-.BirthButton:hover {
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #68a54b), color-stop(1, #74ad5a));
-	background:-moz-linear-gradient(top, #68a54b 5%, #74ad5a 100%);
-	background:-webkit-linear-gradient(top, #68a54b 5%, #74ad5a 100%);
-	background:-o-linear-gradient(top, #68a54b 5%, #74ad5a 100%);
-	background:-ms-linear-gradient(top, #68a54b 5%, #74ad5a 100%);
-	background:linear-gradient(to bottom, #68a54b 5%, #74ad5a 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#68a54b', endColorstr='#74ad5a',GradientType=0);
-	background-color:#68a54b;
-}
-.BirthButton:active {
-	position:relative;
-	top:1px;
 }
 
 .wrapper {
